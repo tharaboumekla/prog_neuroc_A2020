@@ -144,3 +144,43 @@ end
 
 end
 
+
+
+
+dam1(50,1,1,0,1)
+dam2(50,1,1,0,1)
+
+
+function damier= dam2(nn,N,M,ss,ff); 
+
+petit_damier=creation1(nn,ss,ff);
+grand_damier = zeros(nn*N, nn*M); %le grand_damier sera de la grosseur qu'on veut * la grosseur du petit damier
+for col = 0:N-1  %loop verticale
+    for rang = 0:M-1   %loop horizontale
+        grand_damier((nn*col)+1:nn*(col+1),(nn*rang)+1:nn*(rang+1))= petit_damier; %damier (Y up :Y down, X Left: X Right)
+        %on ajoute un petit_damier au coordonée
+        %nn*(col/rang)+1:nn*(col/rang)+1. le +1 est pour eviter les 0 et le
+        %chevauchement
+    end
+end
+
+imwrite(grand_damier, 'damier.png', 'png')
+grand_damier2 = imread('damier.png');
+figure, imshow(grand_damier2);
+end
+
+
+function petit_damier=creation1(nn,ss,ff)
+% le dégradé est déja mis dans cette function
+e = zeros(nn/2, nn/2); 
+rampe = repmat(ss:(ff-ss)/(nn/2-1):ff, nn/2, 1); %(start: largeur: fin, hauteur)%pour garder la forme de carré, c'est fin-debut/largeur/2-1 %(start: largeur: fin, hauteur)%pour garder la forme de carré, c'est fin-debut/largeur/2-1
+petit_damier = ones(nn, nn);
+petit_damier(1:nn/2, 1:nn/2) = e;
+petit_damier(nn/2+1:nn, nn/2+1:nn);
+petit_damier(nn/2+1:nn, 1:nn/2) = rampe;
+petit_damier(1:nn/2, nn/2+2:nn) = rampe;
+end
+
+
+figure,imshow(dam1)
+

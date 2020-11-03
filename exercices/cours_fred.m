@@ -42,7 +42,7 @@ sound(stimulus, Fe); % joue le son masque
 % Semblable mais en vision...
 % grille sinusoidale : quels sont les proprietes d'une grille sinusoidale?
 % comment faire uen grille sinusoidale?
-x_taille = 512;
+x_taille = 512; %on créer une matrice avec x taille en largeur et y taille en longueur
 y_taille = 512;
 x = repmat(0:x_taille-1, y_taille, 1); % ou une boucle...
 min(x(:))
